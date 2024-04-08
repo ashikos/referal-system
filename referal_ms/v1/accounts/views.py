@@ -70,6 +70,25 @@ class UserView(APIView):
         return Response(auth.UserSerializer(user).data)
 
 
+class UsersView(APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        users = acc_models.ProjectUser.objects.all()
+
+        return Response(auth.UserSerializer(users, many=True).data)
+
+
+class ReferralView(APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        users = user.refers.all()
+
+        return Response(auth.ReferralSerializer(users, many=True).data)
+
+
 class LogoutView(APIView):
 
     def post(self, request):
