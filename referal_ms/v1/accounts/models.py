@@ -7,5 +7,5 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 
 class ProjectUser(AbstractUser):
 
-
+    referal = models.CharField(max_length=200, null=True, blank=True)
 

@@ -37,7 +37,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # requirements
+    'corsheaders',
+    'rest_framework',
+    'django_filters',
+    'rest_framework_swagger',
+
+    # apps
+    'v1.accounts',
+
 ]
+
+
+
+REST_FRAMEWORK = {
+    'SWAGGER_SETTINGS': {
+        'USE_SESSION_AUTH': True,
+        'DOC_EXPANSION': 'list',
+        'APIS_SORTER': 'alphabetical',
+        'JSON_EDITOR': True,
+    },
+
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -110,6 +133,11 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+
+CORS_ALLOW_CREDENTIALS = True
+
+AUTH_USER_MODEL = "accounts.ProjectUser"
 
 
 # Static files (CSS, JavaScript, Images)
